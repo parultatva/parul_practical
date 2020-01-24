@@ -1,0 +1,36 @@
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Tweets</h1>
+    <%= link_to("New Tweet", new_tweet_path , class: "btn btn-primary") %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Description</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tweets.each do |tweet| %>
+          <tr>
+            <td><%= tweet.user.name %></td>
+            <td><%= tweet.description %></td>
+            <td><%= link_to 'Show', tweet %></td>
+            <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+            <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
